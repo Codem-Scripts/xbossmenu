@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xBossMenu</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @font-face {
+            font-family: Rubik Med;
+            src: url(./font/Rubik-Medium.ttf);
+        }
+        @font-face {
+            font-family: Rubik Reg;
+            src: url(./font/Rubik-Regular.ttf);
+        }
+        h1{
+            font-family: Rubik Med;
+            color: white;
+        }
+        .emplistprp:hover{
+            background-image: url(./img/btnactive.png);
+            background-size: 100% 100%;
+            transition: 300ms;
+        }
+        .inputcont::after{
+            content: "$";
+        }
+        *::-webkit-scrollbar {
+            display: none;
+        }
+       
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+    </style>
+     
+</head>
+<body style="overflow: hidden; user-select: none;">
+
+    <div class="flex justify-center items-center w-screen h-screen" id="main" style="display: none;">
+        <div class="flex justify-center items-start area w-[62%] h-[69%]" >
+            <div class="flex justify-center items-center w-[100%] h-[98%] ipad" style="background-image: url(./img/ipad-bg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                <div class="flex flex-col justify-center items-start w-[94.5%] h-[92%] screenbg" style="background-image: url(./img/mainbg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <div class="flex justify-center items-center w-full h-[19%] topnavi" style="background-image: url(./img/topnavibg.png); background-size: 100% 100%;" >
+                        <div class="flex justify-between w-[92%] h-[50%] buttonslayout">
+                            <div class="flex justify-center items-start w-[18%] emplist">
+                                <div class="flex justify-center items-center gap-0.5 w-full h-[86%] emplistprp" id="emplistbtn" style=" font-size: .8vw; background-image: url(./img/btnactive.png); background-size: 100% 100%; cursor: pointer;" onclick="empac()" >
+                                    <h1>EMPLOYEE</h1> <span style="color: white; font-family: Rubik Reg;">LIST</span>
+                                </div>
+                            </div>
+                            <div class="flex w-[18%] emplist">
+                                <div class="flex justify-center items-center gap-0.5 w-full h-[86%] recruitprp" id="recruitbtn" style=" font-size: .8vw;  background-image: url(./img/btnbg.png); background-size: 100% 100%; cursor: pointer;" onclick="recac()">
+                                    <h1>RECRUIT</h1>
+                                </div>
+                            </div>
+                            <div class="flex w-[18%] emplist" >
+                                <div class="flex justify-center items-center gap-0.5 w-full h-[86%] emplistprp" style=" font-size: .8vw;  background-image: url(./img/btnbg.png); background-size: 100% 100%; cursor: pointer;" onclick="openInventory()">
+                                    <h1>BOSS</h1> <span style="color: white; font-family: Rubik Reg;">INVENTORY</span>
+                                </div>
+                            </div>
+                            <div class="flex w-[18%] emplist">
+                                <div class="flex justify-center items-center gap-0.5 w-full h-[86%] emplistprp" style=" font-size: .8vw;  background-image: url(./img/btnbg.png); background-size: 100% 100%; cursor: pointer;" onclick="openOutfit()">
+                                    <h1>OUTFIT</h1>
+                                </div>
+                            </div>
+                            <div class="flex w-[18%] emplist" >
+                                <div class="flex justify-center items-center gap-0.5 w-full h-[86%] emplistprp" id="cmpbtn" style=" font-size: .8vw;  background-image: url(./img/btnbg.png); background-size: 100% 100%; cursor: pointer;" onclick="compac()">
+                                    <h1>COMPANY</h1> <span style="color: white; font-family: Rubik Reg;">MONEY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center w-full h-[81%] bottommain">
+                        <!-- EMPLOYE LIST -->
+                        <div class="flex flex-col w-[91%] h-full mainprp"  style="display: block;">
+                            <div class="flex w-full h-[12%] justify-center items-end maintop">
+                                <div class="flex justify-between items-center maintopprp w-full h-[80%]">
+                                    <div class="flex justify-center w-[15.3%] h-full profile" style=" background-image: url(./img/profilebg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                        <div class="flex justify-center w-[90%] profileprp">
+                                            <div class="flex justify-center items-center w-[28%] pphoto">
+                                                <div class="flex w-full h-[70%] pphotoprp" style=" border-radius: 100%;">
+                                                    <img src="./img/pphoto.png" alt="" style="background-size: 100% 100%; background-repeat: no-repeat;">
+                                                </div>
+                                            </div>
+                                            <div class="flex w-[72%] justify-center items-center ptext">
+                                                <div class="flex flex-col justify-start items-start w-[80%] h-[60%] ptextprp">
+                                                 <h1 style="font-size: .4vw; color: #707788;">Sergant II</h1>
+                                                 <h1 style="font-size: .5vw;">Brenden Randall</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-[75%] line" style="border: 1px solid  rgba(217, 217, 217, 0.1);"></div>
+                                    <div class="flex justify-start items-center  w-[5%] h-full number" >
+                                        <div class="flex justify-start items-center numberprp w-[77%] h-[40%]">
+                                            <h1 style="color: #CCFFB5; font-size: .9vw;">10</h1><span style="color: rgba(255, 255, 255, 0.46); font-size: .5vw;" >/42</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex  justify-center items-end w-full h-[87%] mainbottom">
+                                <div class="flex flex-col justify-start items-center gap-2  w-full h-[97%]" >
+                                    <div class="w-full h-full overflow-auto mbprp">
+                                        <div class="flex justify-between w-full h-[10%] list1" style=" background-image: url(./img/listbg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                            <div class="flex justify-end items-center  w-[25%] leftname">
+                                                <div class="flex flex-col w-[68%] h-[60%] lnprp">
+                                                    <h1 style="font-size: .5vw; letter-spacing: .03vw; color: #969FB5;">Police Chief</h1>
+                                                    <h1 style="font-size: .6vw; color: white;">Brenden Randall</h1>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center items-end w-[79%] steamname">
+                                             <div class="flex items-start w-[98%] h-[50%] snprp">
+                                                <h1 style="font-size: .5vw; color: rgba(255, 255, 255, 0.28);;">{Steam Name}</h1>
+                                            </div>
+                                            </div>
+                                            <div class="flex justify-start items-center w-[7%] status">
+                                             <div class="flex justify-start items-center w-full h-[40%] statusprp" >
+                                                <li style=" width: 20%; font-size: .84vw; color: greenyellow;"></li> <span style="color: white; font-size: .55vw; color: #CCFFB5;;">ONLINE</span>
+                                            </div>
+                                        
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between w-full h-[10%] list2 mt-2" style=" background-image: url(./img/listbg.png); background-size: 100% 100%;">
+                                            <div class="flex justify-end items-center  w-[25%] leftname">
+                                                <div class="flex flex-col w-[68%] h-[60%] lnprp">
+                                                    <h1 style="font-size: .5vw; letter-spacing: .03vw; color: #969FB5;">Police Chief</h1>
+                                                    <h1 style="font-size: .6vw; color: white;">Brenden Randall</h1>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center items-end w-[79%] steamname">
+                                             <div class="flex items-start w-[98%] h-[50%] snprp">
+                                                <h1 style="font-size: .5vw; color: rgba(255, 255, 255, 0.28);;">{Steam Name}</h1>
+                                            </div>
+                                            </div>
+                                            <div class="flex justify-start items-center w-[7%] status">
+                                             <div class="flex justify-start items-center w-full h-[40%] statusprp">
+                                                <li style=" width: 20%; font-size: .84vw; color:  #FF8282;"></li> <span style=" font-size: .55vw; color: #FFB1B1;">OFFLINE</span>
+                                            </div>
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recruit List -->
+                        <div class="flex w-[100%] h-full items-center mainprp" id="recruitmenu" style="display: none;">
+                            <div class="w-[50%] flex flex-col h-full ml-5">
+                                <div class="flex w-full h-[12%] justify-center items-end maintop">
+                                    <div class="flex justify-between items-center maintopprp w-full h-[80%]">
+                                        <div class="flex justify-center w-[26.3%] h-full profile" style=" background-image: url(./img/profilebg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                            <div class="flex justify-center w-[90%] profileprp">
+                                                <div class="flex justify-center items-center w-[28%] pphoto">
+                                                    <div class="flex w-full h-[70%] pphotoprp" style=" border-radius: 100%;">
+                                                        <img src="./img/pphoto.png" alt="" style="background-size: 100% 100%; background-repeat: no-repeat;">
+                                                    </div>
+                                                </div>
+                                                <div class="flex w-[72%] justify-center items-center ptext">
+                                                    <div class="flex flex-col justify-start items-start w-[80%] h-[60%] ptextprp">
+                                                     <h1 style="font-size: .4vw; color: #707788;">Sergant II</h1>
+                                                     <h1 style="font-size: .5vw;">Brenden Randall</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex w-[60%] line" style="border: 1px solid  rgba(217, 217, 217, 0.1);"></div>
+                                        <div class="flex justify-start items-center  w-[5%] h-full number" >
+                                            <div class="flex justify-start items-center numberprp w-[77%] h-[40%]">
+                                                <h1 style="color: #CCFFB5; font-size: .9vw;">10</h1><span style="color: rgba(255, 255, 255, 0.46); font-size: .5vw;" >/42</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex  justify-center items-end w-full h-[87%] mainbottom">
+                                    <div class="flex flex-col justify-start items-center gap-2  w-full h-[97%]" >
+                                        <div class="w-full h-full overflow-auto mbprp2">
+                                            <div class="flex justify-between w-full h-[10%] list1" style=" background-image: url(./img/listbg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                                <div class="flex justify-end items-center  w-[25%] leftname" >
+                                                    <div class="flex flex-col w-[68%] h-[60%] lnprp">
+                                                        <h1 style="font-size: .5vw; letter-spacing: .03vw; color: #969FB5;">Police Chief</h1>
+                                                        <h1 style="font-size: .6vw; color: white;">Brenden Randall</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-center items-end w-[69%] steamname" >
+                                                 <div class="flex items-start w-[98%] h-[50%] snprp">
+                                                    <h1 style="font-size: .5vw; color: rgba(255, 255, 255, 0.28);;">{Steam Name}</h1>
+                                                </div>
+                                                </div>
+                                                <div class="flex justify-center items-center recruit h-[100%] w-[8%]" >
+                                                    <div class="flex justify-center items-center uprank h-full w-1/3">
+                                                      <div class="flex justify-center items-center uprankprp w-4 h-4" style="cursor: pointer;" >
+                                                        <img src="./img/uprank.png" alt="" style="background-size: 100% 100%;">
+                                                    </div>
+                                                    </div>
+                                                    <div class="flex justify-center items-center uprank h-full w-1/3" >
+                                                        <div class="flex justify-center items-center uprankprp w-4 h-4" style="cursor: pointer;" >
+                                                          <img src="./img/decruit.png" alt="" style="background-size: 100% 100%;">
+                                                      </div>
+                                                      </div>
+                                                      <div class="flex justify-center items-center uprank h-full w-1/3">
+                                                        <div class="flex justify-center items-center uprankprp w-4 h-4" style="cursor: pointer;">
+                                                          <img src="./img/downrank.png" alt="" style="background-size: 100% 100%;">
+                                                      </div>
+                                                      </div>
+                                                </div>
+                                                <div class="flex justify-start items-center w-[7%] status">
+                                                 <div class="flex justify-start items-center w-full h-[40%] statusprp" >
+                                                    <li style=" width: 20%; font-size: .84vw; color: greenyellow;"></li> <span style="color: white; font-size: .55vw; color: #CCFFB5;;">ONLINE</span>
+                                                </div>
+                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex h-[74%] w-[0%] ml-5 line" style="border: 1px solid  rgba(217, 217, 217, 0.1);"></div>
+                            <div class="w-[50%] flex flex-col h-full ml-5" >
+                                <div class="flex w-full h-[12%] justify-center items-end maintop">
+                                    <div class="flex items-center maintopprp w-full h-[80%]">
+                                        <div class="flex w-[60%] line" style="border: 1px solid  rgba(217, 217, 217, 0.1);"></div>
+                                        <div class="flex justify-center w-[26.3%] h-full profile ml-4" style=" background-image: url(./img/profilebg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                            <div class="flex justify-center w-[90%] profileprp">
+
+                                                <div class="flex w-[72%] justify-center items-center ptext">
+                                                    <div class="flex flex-col justify-start items-end w-[80%] h-[60%]">
+                                                     <h1 style="font-size: .4vw; color: #707788;">Recruit</h1>
+                                                     <h1 style="font-size: .5vw;">New Player</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-center items-center w-[28%] pphoto">
+                                                    <div class="flex w-full" style=" border-radius: 100%;">
+                                                        <img src="./img/newplayer.png" alt="" style="background-size: 100% 100%; background-repeat: no-repeat;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-[90%] h-[82%] flex flex-col items-center justify-center">
+                                    <div style="margin-bottom: 12.5vw; z-index: 50;" class="flex items-center justify-center flex-col w-full h-full">
+                                        <div class="flex items-start justify-center flex-col" style="position: relative; top: 2vw;">
+                                            <div style="display: flex; flex-direction: column; align-items: center; justify-items: center; line-height: 1.4vw;">
+                                                <p style="font-size: 1.25vw; color: #707788; font-family: Rubik Reg; font-weight: 700;">Recruit</p>
+                                                <p style="font-size: 1.25vw; color: white;">New Player</p>
+                                            </div>
+                                        </div>
+                                        <div style="position: relative; top: 6vw;" class="w-full h-full flex items-center justify-center flex-col ">
+                                            <p style="color: #707788; font-size: .4307vw; text-align: left; margin-bottom: .5vw;" class="w-[69%]">Player ID</p>
+                                            <input class="w-[70%] h-[35%] playerId" type="number" placeholder="ID" style="font-family: Rubik Reg; color: white; font-weight: 700; font-size: 1.0417vw; outline: none; text-align: center; border-radius: 0.1875rem; border: 1px solid rgba(255, 255, 255, 0.04); background: linear-gradient(180deg, rgba(34, 34, 34, 0.00) -50%, rgba(43, 43, 43, 0.47) 100%);">
+                                            <button class="w-[70%] h-[35%] " style="font-size: .8333vw;font-family: Rubik Reg; margin-top: 1.2vw; border-radius: 0.1875rem; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.04); color: white;  background: #707788;" onclick="setJob()">RECRUIT</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="absolute items-center justify-center">
+                                        <img src="./img/newplayer2.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Company Money -->
+                        <div class="flex flex-col w-[91%] h-full mainprp" id="companymenu" style="display: none;">
+                            <div class="flex w-full h-[12%] justify-center items-end maintop">
+                                <div class="flex justify-between items-center maintopprp w-full h-[80%]">
+                                    <div class="flex justify-center w-[15.3%] h-full profile" style=" background-image: url(./img/profilebg.png); background-size: 100% 100%; background-repeat: no-repeat;">
+                                        <div class="flex justify-center w-[90%] profileprp">
+                                            <div class="flex justify-center items-center w-[28%] pphoto">
+                                                <div class="flex w-full h-[70%] pphotoprp" style=" border-radius: 100%;">
+                                                    <img src="./img/pphoto.png" alt="" style="background-size: 100% 100%; background-repeat: no-repeat; border-radius: 100% 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="flex w-[72%] justify-center items-center ptext">
+                                                <div class="flex flex-col justify-start items-start w-[80%] h-[60%] ptextprp">
+                                                 <h1 style="font-size: .4vw; color: #707788;">Sergant II</h1>
+                                                 <h1 style="font-size: .5vw;">Brenden Randall</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-[75%] line" style="border: 1px solid  rgba(217, 217, 217, 0.1);"></div>
+                                    <div class="flex justify-start items-center  w-[5%] h-full number" >
+                                        <div class="flex justify-start items-center numberprp w-[77%] h-[40%]">
+                                            <h1 style="color: #CCFFB5; font-size: .9vw;">10</h1><span style="color: rgba(255, 255, 255, 0.46); font-size: .5vw;" >/42</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center items-start w-full h-[87%] mainbottom" >
+                                <div class="flex justify-between items-center w-full h-[55%] mbtop" >
+                                    <div class="flex justify-center items-end h-full w-[36.5%] cart">
+                                        <div class="flex flex-col justify-center w-full h-[85%] cartprp" style="background-image: url(./img/card.png); background-size: 100% 100%;" >
+                                            <div class="flex justify-center items-center w-full h-1/3 cardname" >
+                                                <div class="flex justify-between items-end cnprp w-[85%] h-[70%]">
+                                                    <div class="flex w-[17%] h-[86%]  cardlogo">
+                                                        <img src="./img/lspdlogo.png" alt="" style="background-size: 100% 100%;">
+                                                    </div>
+                                                    <div class="flex justify-center flex-col w-[78%] h-[75%]  cardlogoname">
+                                                        <h1 style="font-family: Rubik Reg; font-size: .5vw; line-height: .5vw; color: #BA9348;">LOS SANTOS</h1>
+                                                        <h1 class="jobnamexd" style="font-size: .74vw; line-height: 1vw; " >POLICE DEPERTMENT</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center items-center w-full h-1/3 cardnumber" >
+                                               <div class="flex justify-start items-center w-[82%] h-[27%]  cnumberprp" >
+                                                <h1 style="font-size: 1vw; letter-spacing: .1vw; color: #9B9B9B;">4646 0001 0000 0000</h1>
+                                            </div>
+                                            </div>
+                                            <div class="flex justify-center items-start w-full h-1/3 cardamount" >
+                                                <div class="flex flex-col justify-between items-start w-[80%] h-[65%] caprp" >
+                                                  <div class="flex w-full gap-1 h-[40%] justify-start items-end caprptext" ">
+                                                    <h1 style="font-family: Rubik Reg; font-size: .5vw; line-height: .4vw; color: #A9A9A9;">CURRENT</h1><span style=" font-size: .5vw; font-family: Rubik Med; color: white; line-height: .4vw; color: #A9A9A9;">amount</span>
+                                                </div>
+                                                  <div class="flex justify-start items-center w-full h-[45%] caprpmoney">
+                                                    <h1 style="font-size: 1vw;">$500,000</h1>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center items-end h-full w-[31%] activities"  >
+                                        <div class="flex flex-col flex-wrap  justify-between items-start actprp w-full h-[95%]">
+                                            <div class="flex gap-1 justify-start items-start toptext w-full h-[7%]"  >
+                                                <h1 style="font-size: .7vw; letter-spacing: .07vw;">ACCOUNT</h1>
+                                                <h1 style="font-family: Rubik Reg; font-size: .7vw; letter-spacing: .04vw;">ACTIVITIES</h1>
+                                            </div>
+                                            <div class="flex flex-col gap-4 justify-start flex-wrap actprops w-full h-[89%] overflow-y: auto;" >
+                                                <div class="overflow-menu  flex-wrap overflow-auto  w-full h-full">
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-end items-center  h-full w-[20.3%] fastactions">
+                                        <div class="flex gap-4 flex-col justify-start items-center w-full h-[85%] faprp" >
+                                            <div class="flex justify-between w-full h-[20%] deposit1" onclick="Deposit(100)" style=" background-image: url(./img/depositbg.png); background-size: 100% 100%; cursor: pointer;">
+                                                <div class="flex justify-center items-center w-[55%] dep100">
+                                                    <h1 style="font-size: .7vw;">$100</h1>
+                                                </div>
+                                                <div class="flex justify-start items-center w-[70%] deptext" >
+                                                <h1 style="font-size: .8vw; letter-spacing: .05vw;">DEPOSIT</h1></div>
+                                            </div>
+                                            <div class="flex justify-between w-full h-[20%] deposit2" onclick="Deposit(1000)" style=" background-image: url(./img/depositbg.png); background-size: 100% 100%; cursor: pointer;">
+                                                <div class="flex justify-center items-center w-[55%] dep1000" >
+                                                    <h1 style="font-size: .7vw;">$1000</h1>
+                                                </div>
+                                                <div class="flex justify-start items-center w-[70%] deptext" ">
+                                                    <h1 style="font-size: .8vw; letter-spacing: .05vw;">DEPOSIT</h1></div>
+                                            </div>
+                                            <div class="flex justify-between w-full h-[20%] withdraw1" onclick="Withdraw(100)" style=" background-image: url(./img/withdrawbg.png); background-size: 100% 100%; cursor: pointer;">
+                                                <div class="flex justify-center items-center w-[55%] wd100" >
+                                                    <h1 style="font-size: .7vw;">$100</h1>
+                                                </div>
+                                                <div class="flex justify-start items-center w-[70%] wdtext">
+                                                    <h1 style="font-size: .8vw; letter-spacing: .05vw;">WITHDRAW</h1></div>
+                                            </div>
+                                            <div class="flex justify-between w-full h-[20%] withdraw2" onclick="Withdraw(1000)" style=" background-image: url(./img/withdrawbg.png); background-size: 100% 100%; cursor: pointer;">
+                                                <div class="flex justify-center items-center w-[55%] wd1000">
+                                                    <h1 style="font-size: .7vw;">$1000</h1>
+                                                </div>
+                                                <div class="flex justify-start items-center w-[70%] wdtext" >
+                                                    <h1 style="font-size: .8vw; letter-spacing: .05vw;">WITHDRAW</h1></div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <div class="flex justify-start items-center w-full h-[45%] mbbottom" >
+                                    <div class="flex justify-between items-start w-[82%] h-[40%] mbbprp" >
+                                        <div class="flex justify-center items-center w-[31.4%] h-[84%] inpt" style=" background-image: url(./img/3btn.png); background-size: 100% 100%;">
+                                            <input class="flex w-[80%] h-full inputcont " type="number" onfocus="this.value=''" oninput="validity.valid||(value='');" pattern="[0-9]" required minlength="3" maxlength="15" size="15" placeholder="amount - $" style=" opacity: 50%; font-family: Rubik Reg ; color: white; font-size: 1vw;  background-color: transparent; outline: none;"></span>
+                                        </div>
+                                        <div class="flex justify-center items-center w-[31.4%] h-[84%] depbtn " onclick="Deposit()" style=" background-image: url(./img/3btn.png); background-size: 100% 100%; cursor: pointer;">
+                                            <h1 style="font-size: 1vw;">DEPOSIT</h1>
+                                        </div>
+                                        <div class="flex justify-center items-center w-[31.4%] h-[84%] wdbtn"  onclick="Withdraw()" style="background-image: url(./img/3btn.png); background-size: 100% 100%; cursor: pointer;">
+                                            <h1 style="font-size: 1vw;">WITHDRAW</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./app.js"></script>
+</html>
